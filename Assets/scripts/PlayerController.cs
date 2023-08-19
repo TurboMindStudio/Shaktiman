@@ -36,8 +36,8 @@ public class PlayerController : MonoBehaviour
     //Dash
     [Header("Dash Logic---")]
     [SerializeField] float dashSpeed;
-    [SerializeField] float dashRate;
-    [SerializeField] int dashTIme;
+    private float dashRate;
+    [SerializeField] int dashTime;
     [SerializeField] GameObject dashEfx;
     [SerializeField] Image dashIcon;
     public bool isDashing;
@@ -57,6 +57,8 @@ public class PlayerController : MonoBehaviour
     [Range(0f, 1000f)]
     [SerializeField] float FlashSpeed;
     [SerializeField] ParticleSystem FlashEfx;
+    [SerializeField] TextMeshProUGUI FlashTimeText;
+    [SerializeField] Image flashIcon;
 
     [Header("Spin Logic")]
     [SerializeField] float RotateSpeed;
@@ -78,21 +80,12 @@ public class PlayerController : MonoBehaviour
         AudioManager.instance.FlyRotateFlashRunaudioSource.mute = true;
         haveSpinPower = true;
         dashRateText.text = "";
-      //  dashRate=Mathf.
+
     }
 
     private void Update()
     {
-        // dash Time Rate
-        if (dashRate >= 1)
-        {
-            dashRate -= Time.deltaTime;
-            int dashTime = Mathf.FloorToInt(dashRate);
-            dashRateText.text = dashTime.ToString();
-           // dashIcon.color = Color.white;
- 
-            
-        }
+        
 
         // jump true
         if (isJumping == true)
@@ -109,7 +102,7 @@ public class PlayerController : MonoBehaviour
 
         CharacterLocomotion();
         Flash();
-
+        Dash();
 
 
     }
@@ -217,6 +210,26 @@ public class PlayerController : MonoBehaviour
 
     void Dash()
     {
+        // dash Time Rate
+        if (dashRate >= 1)
+        {
+            dashRate -= Time.deltaTime;
+            dashTime = Mathf.FloorToInt(dashRate);
+        }
+
+        if (dashTime == 0)
+        {
+            dashRateText.text = "";
+            dashIcon.color = Color.white;
+
+        }
+        else
+        {
+            dashIcon.color = Color.grey;
+            dashRateText.text = dashTime.ToString();
+        }
+
+
         isDashing = true;
         if(isDashing && isFlashing==false)
         {
@@ -224,18 +237,13 @@ public class PlayerController : MonoBehaviour
             if (dashRate <= 1 && Input.GetKeyDown(KeyCode.Q))
             {
                 
-                dashIcon.color = Color.gray;
                 projectileShoot.isShoot = false;
                 AudioManager.instance.audioSource.PlayOneShot(AudioManager.instance.DashSfx);
                 characterController.Move(moveInput * dashSpeed * Time.deltaTime);
                 GameObject dashEffect = Instantiate(dashEfx, transform.position, Quaternion.identity) as GameObject;
                 Destroy(dashEffect, 2);
-                dashRate = 5;
-                if (dashRate >= 0)
-                {
-                    dashRateText.text = "";
-                    dashIcon.color = Color.white;
-                }
+                dashRate = 9;
+               
                 
             }
             
@@ -261,17 +269,24 @@ public class PlayerController : MonoBehaviour
             if (FlashTimeLimit > 0)
             {
                 FlashTimeLimit -= Time.deltaTime;
-               
-                if (FlashTimeLimit <= 0)
+                int flashLimit = Mathf.FloorToInt(FlashTimeLimit);
+                FlashTimeText.text = flashLimit.ToString();
+                flashIcon.color = Color.grey;
+
+                if (FlashTimeLimit < 1)
                 {
-                    FlashTimeLimit = 10;
-                    
+                    FlashTimeLimit = 11;
+                    FlashTimeText.text = "";
+                    flashIcon.color = Color.white;
                     isFlashing = false;
                     haveSpinPower = true;
 
                 }
+
             }
 
+            
+            
 
             isJumping = false;
             isDashing = false;
