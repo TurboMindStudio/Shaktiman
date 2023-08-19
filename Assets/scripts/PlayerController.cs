@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using Cinemachine;
 using UnityEngine.UI;
-
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -37,11 +37,13 @@ public class PlayerController : MonoBehaviour
     [Header("Dash Logic---")]
     [SerializeField] float dashSpeed;
     [SerializeField] float dashRate;
+    [SerializeField] int dashTIme;
     [SerializeField] GameObject dashEfx;
-    //[SerializeField] Image dashIcon;
+    [SerializeField] Image dashIcon;
     public bool isDashing;
     Vector2 currentVelocity;
     float smoothXTime = 10f;
+    [SerializeField] TextMeshProUGUI dashRateText;
 
 
     //Animation
@@ -75,15 +77,21 @@ public class PlayerController : MonoBehaviour
         AudioManager.instance.FlashRunaudioSource.mute = true;
         AudioManager.instance.FlyRotateFlashRunaudioSource.mute = true;
         haveSpinPower = true;
-
+        dashRateText.text = "";
+      //  dashRate=Mathf.
     }
 
     private void Update()
     {
         // dash Time Rate
-        if (dashRate >= 0)
+        if (dashRate >= 1)
         {
             dashRate -= Time.deltaTime;
+            int dashTime = Mathf.FloorToInt(dashRate);
+            dashRateText.text = dashTime.ToString();
+           // dashIcon.color = Color.white;
+ 
+            
         }
 
         // jump true
@@ -213,18 +221,24 @@ public class PlayerController : MonoBehaviour
         if(isDashing && isFlashing==false)
         {
             
-            if (dashRate <= 0 && Input.GetKeyDown(KeyCode.Q))
+            if (dashRate <= 1 && Input.GetKeyDown(KeyCode.Q))
             {
                 
-                //dashIcon.color = Color.gray;
+                dashIcon.color = Color.gray;
                 projectileShoot.isShoot = false;
                 AudioManager.instance.audioSource.PlayOneShot(AudioManager.instance.DashSfx);
                 characterController.Move(moveInput * dashSpeed * Time.deltaTime);
                 GameObject dashEffect = Instantiate(dashEfx, transform.position, Quaternion.identity) as GameObject;
                 Destroy(dashEffect, 2);
-                dashRate = 2;
+                dashRate = 5;
+                if (dashRate >= 0)
+                {
+                    dashRateText.text = "";
+                    dashIcon.color = Color.white;
+                }
                 
             }
+            
         }
 
         

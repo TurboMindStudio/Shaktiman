@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 69486531}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.77, y: 6.46, z: 1.67}
+  m_LocalPosition: {x: 0.77, y: 7.33, z: 2.56}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1001,7 +1001,7 @@ MonoBehaviour:
   MoveSpeed: 40
   cam: {fileID: 0}
   smoothTime: 15
-  JumpSpeed: 50
+  JumpSpeed: 70
   gravity: -3
   groundCheck: {fileID: 1039142418191160195}
   LandParticle: {fileID: 141433446842962269, guid: 9fe8f8b3288e45a44af36ff8aa04486e,
@@ -1019,8 +1019,8 @@ MonoBehaviour:
   FlashTimeLimit: 10
   FlashSpeed: 150
   FlashEfx: {fileID: 6317427126469182757}
-  RotateSpeed: 500
-  FlySpeed: 100
+  RotateSpeed: 5000
+  FlySpeed: 50
   FlyAltitude: 200
   FlyEfx: {fileID: 7179825558254052076}
   isSpin: 0
