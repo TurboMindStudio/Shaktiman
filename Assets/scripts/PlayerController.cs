@@ -23,15 +23,8 @@ public class PlayerController : MonoBehaviour
     //Jump
     [Header("Jump Logic---")]
     [SerializeField] float JumpSpeed;
-    [SerializeField] float gravity;
-    [SerializeField] Transform groundCheck;
     [SerializeField] GameObject LandParticle;
-    public bool isGrounded;
-    public bool isJumping;
-    public bool hasPlayed;
-    RaycastHit hit;
-    Vector3 moveVelocity;
-    float maxRange = 2f;
+
 
     //Dash
     [Header("Dash Logic---")]
@@ -42,7 +35,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Image dashIcon;
     public bool isDashing;
     Vector2 currentVelocity;
-    float smoothXTime = 10f;
     [SerializeField] TextMeshProUGUI dashRateText;
 
 
@@ -56,7 +48,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float FlashTimeLimit;
     [Range(0f, 1000f)]
     [SerializeField] float FlashSpeed;
-    [SerializeField] ParticleSystem FlashEfx;
+    [SerializeField] GameObject FlashEfx;
     [SerializeField] TextMeshProUGUI FlashTimeText;
     [SerializeField] Image flashIcon;
 
@@ -65,9 +57,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float FlySpeed;
     [Range(0f,1000f)]
     [SerializeField] float FlyAltitude;
-    [SerializeField] ParticleSystem FlyEfx;
+    [SerializeField] GameObject FlyEfx;
     public bool isSpin;
     public bool haveSpinPower;
+    [SerializeField] characterGravity gravityCs;
 
     //projectile reference
     private ProjectileShoot projectileShoot;
@@ -87,11 +80,6 @@ public class PlayerController : MonoBehaviour
     {
         
 
-        // jump true
-        if (isJumping == true)
-        {
-            CharacterJump();
-        }
 
        // spin true
         if (haveSpinPower)
@@ -104,7 +92,7 @@ public class PlayerController : MonoBehaviour
         Flash();
         Dash();
 
-
+        
     }
 
 
@@ -112,58 +100,6 @@ public class PlayerController : MonoBehaviour
 
     void CharacterJump()
     {
-        
-
-        if (Physics.Raycast(groundCheck.position, -groundCheck.up, maxRange))
-        {
-            isGrounded = true;
-            isSpin = false;
-            PlayerAnim.SetBool("isLanding", false);
-            haveSpinPower = true;
-            // landEfx-------------
-            if (hasPlayed == true)
-            {
-                AudioManager.instance.audioSource.PlayOneShot(AudioManager.instance.LandSfx);
-                GameObject LandSmokeEfx = Instantiate(LandParticle, groundCheck.position, Quaternion.identity) as GameObject;
-                Destroy(LandSmokeEfx, 2f);
-                hasPlayed= false;
-            }
-            
-        }
-        else
-        {
-            hasPlayed = true;
-            isGrounded= false;
-            isDashing = false;
-            haveSpinPower = false;
-            PlayerAnim.SetBool("isJumping", false);
-            projectileShoot.isShoot = false;
-
-        }
-
-        if (isGrounded==true && Input.GetButtonDown("Jump"))
-        {
-            
-            PlayerAnim.SetBool("isJumping", true);
-            moveVelocity.y = JumpSpeed * Time.deltaTime;
-
-        }  
-
-        //gravity-----------------------
-        moveVelocity.y += gravity * Time.deltaTime;
-        characterController.Move(moveVelocity);
-
-        if (moveVelocity.y > 0.3f)
-        {
-            PlayerAnim.SetBool("isFalling", true);
-        }
-        else if (moveVelocity.y < 0.1f)
-        {
-            PlayerAnim.SetBool("isFalling", false);
-            PlayerAnim.SetBool("isLanding", true);
-            
-        }
-
 
     }
 
@@ -284,11 +220,6 @@ public class PlayerController : MonoBehaviour
                 }
 
             }
-
-            
-            
-
-            isJumping = false;
             isDashing = false;
             
             if (moveInput != Vector3.zero)
@@ -297,14 +228,14 @@ public class PlayerController : MonoBehaviour
                 AudioManager.instance.FlashRunaudioSource.mute = false;
                 ChangeCinemachineOrbit(50);
                 PlayerAnim.SetBool("isFlashing", true);
-                FlashEfx.Play();
+                FlashEfx.SetActive(true);
                 Physics.gravity = new Vector3(0, -9.81f, 0);
                 characterController.Move(moveInput * FlashSpeed * Time.deltaTime);
             }
             else
             {
                 AudioManager.instance.FlashRunaudioSource.mute = true;
-                FlashEfx.Stop();
+                FlashEfx.SetActive(false);
                 PlayerAnim.SetBool("isFlashing", false);
             }
 
@@ -313,7 +244,7 @@ public class PlayerController : MonoBehaviour
         {
             projectileShoot.isShoot = true;
             AudioManager.instance.FlashRunaudioSource.mute = true;
-            FlashEfx.Stop();
+            FlashEfx.SetActive(false);
             PlayerAnim.SetBool("isFlashing", false);
             ChangeCinemachineOrbit(25);
         }
@@ -324,11 +255,13 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.R))
         {
-            isJumping = false;
+            
+            gravityCs.enabled = false;
+            transform.Rotate(0, RotateSpeed * Time.deltaTime, 0);
             isSpin = true;
             isDashing = false;
             isFlashing = false;
-           
+            FlyEfx.SetActive(true);
 
             ChangeCinemachineOrbit(50);
             CinemachineFreeLook VCamControl = MyVCam.GetComponent<CinemachineFreeLook>();
@@ -338,28 +271,18 @@ public class PlayerController : MonoBehaviour
             if (transform.position.y <= FlyAltitude)
             {
                 projectileShoot.isShoot = false;
-                FlyEfx.Play();
                 AudioManager.instance.FlyRotateFlashRunaudioSource.mute = false;
                 Vector3 velocity = transform.up * 50;
                 characterController.Move(velocity * Time.deltaTime);
                 Physics.gravity = Vector3.zero;
-                moveVelocity.y += 0;
+      
             }
 
         }
         else
         {
-            
-            isJumping = true;
-        }
-
-        if (isSpin)
-        {
-            transform.Rotate(0, RotateSpeed * Time.deltaTime, 0);
-        }
-        else
-        {
-            FlyEfx.Stop();
+            FlyEfx.SetActive(false);
+            gravityCs.enabled = true;
             AudioManager.instance.FlyRotateFlashRunaudioSource.mute = true;
             CinemachineFreeLook VCamControl = MyVCam.GetComponent<CinemachineFreeLook>();
             ChangeCinemachineOrbit(22);
