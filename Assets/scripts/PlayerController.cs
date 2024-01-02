@@ -6,6 +6,7 @@ using UnityEngine;
 using Cinemachine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.Mathematics;
 
 public class PlayerController : MonoBehaviour
 {
@@ -19,12 +20,6 @@ public class PlayerController : MonoBehaviour
     Vector3 moveInput;
     private float smoothVelocity;
     
-
-    //Jump
-    [Header("Jump Logic---")]
-    [SerializeField] float JumpSpeed;
-    [SerializeField] GameObject LandParticle;
-
 
     //Dash
     [Header("Dash Logic---")]
@@ -60,7 +55,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject FlyEfx;
     public bool isSpin;
     public bool haveSpinPower;
-    [SerializeField] characterGravity gravityCs;
+    Vector3 flyDirection;
+  
+
 
     //projectile reference
     private ProjectileShoot projectileShoot;
@@ -70,7 +67,7 @@ public class PlayerController : MonoBehaviour
         projectileShoot = GetComponent<ProjectileShoot>();
         characterController =GetComponent<CharacterController>();
         AudioManager.instance.FlashRunaudioSource.mute = true;
-        AudioManager.instance.FlyRotateFlashRunaudioSource.mute = true;
+        AudioManager.instance.FlyAudioSource.mute = true;
         haveSpinPower = true;
         dashRateText.text = "";
 
@@ -78,31 +75,11 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        
-
-
-       // spin true
-        if (haveSpinPower)
-        {
-            Spin();
-        }
-
-
         CharacterLocomotion();
         Flash();
         Dash();
-
-        
+        Spin();
     }
-
-
-
-
-    void CharacterJump()
-    {
-
-    }
-
 
     void CharacterLocomotion()
     {
@@ -251,41 +228,32 @@ public class PlayerController : MonoBehaviour
     }
 
     void Spin()
-    {     
+    {
 
-        if (Input.GetKey(KeyCode.R))
+        if(Input.GetKey(KeyCode.R) && haveSpinPower==true)
         {
-            
-            gravityCs.enabled = false;
             transform.Rotate(0, RotateSpeed * Time.deltaTime, 0);
-            isSpin = true;
-            isDashing = false;
-            isFlashing = false;
-            FlyEfx.SetActive(true);
 
-            ChangeCinemachineOrbit(50);
-            CinemachineFreeLook VCamControl = MyVCam.GetComponent<CinemachineFreeLook>();
-            ChangeCinemachineOrbit(50);
-
-
-            if (transform.position.y <= FlyAltitude)
+            if (this.transform.position.y <= FlyAltitude)
             {
-                projectileShoot.isShoot = false;
-                AudioManager.instance.FlyRotateFlashRunaudioSource.mute = false;
-                Vector3 velocity = transform.up * 50;
-                characterController.Move(velocity * Time.deltaTime);
-                Physics.gravity = Vector3.zero;
-      
+                
+                characterGravity gravity=GameObject.FindGameObjectWithTag("Player").GetComponent<characterGravity>();
+                gravity.enabled = false;
+                flyDirection = Vector3.up * FlySpeed * Time.deltaTime;
+                characterController.Move(flyDirection);
+                FlyEfx.SetActive(true);
+                AudioManager.instance.FlyAudioSource.mute = false;
             }
+           
 
         }
         else
         {
+            transform.Rotate(Vector3.zero);
+            characterGravity gravity = GameObject.FindGameObjectWithTag("Player").GetComponent<characterGravity>();
+            gravity.enabled = true;
             FlyEfx.SetActive(false);
-            gravityCs.enabled = true;
-            AudioManager.instance.FlyRotateFlashRunaudioSource.mute = true;
-            CinemachineFreeLook VCamControl = MyVCam.GetComponent<CinemachineFreeLook>();
-            ChangeCinemachineOrbit(22);
+            AudioManager.instance.FlyAudioSource.mute = true;
         }
     }
 
