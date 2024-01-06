@@ -16,6 +16,7 @@ public class ProjectileShoot : MonoBehaviour
     private void Start()
     {
        pc = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+       isShoot = true;
     }
 
     private void Update()

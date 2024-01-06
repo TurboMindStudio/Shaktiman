@@ -12,6 +12,9 @@ public class AudioManager : MonoBehaviour
     public AudioClip LandSfx;
     public AudioClip ShootSfx;
     public AudioClip CollectSfx;
+    public AudioClip hurtSfx;
+    public AudioClip equipSfx;
+    public AudioClip bookSfx;
     public bool playOnce;
      
     private void Awake()

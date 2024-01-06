@@ -219,7 +219,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            projectileShoot.isShoot = true;
+            //projectileShoot.isShoot = true;
             AudioManager.instance.FlashRunaudioSource.mute = true;
             FlashEfx.SetActive(false);
             PlayerAnim.SetBool("isFlashing", false);

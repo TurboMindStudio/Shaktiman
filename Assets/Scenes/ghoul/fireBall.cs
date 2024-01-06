@@ -31,8 +31,11 @@ public class fireBall : MonoBehaviour
 
             GameObject hitimpact = Instantiate(hitEfx, hitPos.position, Quaternion.identity) as GameObject;
             Destroy(hitimpact, 0.5f);
-
+            AudioManager.instance.audioSource.PlayOneShot(AudioManager.instance.hurtSfx);
             Destroy(this.gameObject);
+
+            PlayerHealth health=GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
+            health.deductHealth(Random.Range(10, 15));
         }
     }
 }
