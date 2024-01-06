@@ -6,6 +6,8 @@ TagManager:
   tags:
   - FxTemporaire
   - Ground
+  - fireball
+  - hitpoint
   layers:
   - Default
   - TransparentFX

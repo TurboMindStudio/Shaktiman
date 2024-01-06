@@ -12,12 +12,12 @@ GameObject:
   - component: {fileID: 8581615343168069506}
   - component: {fileID: 4343090689141627045}
   - component: {fileID: 1895509305219178713}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1354398432562682156
 Transform:
@@ -118,12 +118,12 @@ GameObject:
   - component: {fileID: 8192653983140097390}
   - component: {fileID: 2423894732279666390}
   - component: {fileID: 3941012045206318987}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: roof
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &6073848679268027885
 Transform:
@@ -168,7 +168,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e7d83544059d96146880a2517366bd2a, type: 2}
+  - {fileID: 2100000, guid: 678002118564ab746882c8efcfef52fa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -224,12 +224,12 @@ GameObject:
   - component: {fileID: 7115126977795091502}
   - component: {fileID: 2677594095585552160}
   - component: {fileID: 794150485689181125}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &8026602602831046721
 Transform:
@@ -328,12 +328,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5677069891030440007}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: rustyshop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5677069891030440007
 Transform:
@@ -345,7 +345,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 325.03, y: 127.125, z: 17.23}
-  m_LocalScale: {x: 0.91538566, y: 0.91538566, z: 0.91538566}
+  m_LocalScale: {x: 1.574526, y: 1.574526, z: 1.574526}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8026602602831046721}

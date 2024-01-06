@@ -25,6 +25,20 @@ public class Gangadhar : MonoBehaviour
     [Header("Animation---")]
     [SerializeField] public Animator PlayerAnim;
 
+
+    //Jump
+    [Header("Jump Logic---")]
+    [SerializeField] float JumpSpeed;
+    [SerializeField] float gravity;
+    [SerializeField] Transform groundCheck;
+    [SerializeField] GameObject LandParticle;
+    public bool isGrounded;
+    public bool isJumping;
+    public bool hasPlayed;
+    RaycastHit hit;
+    Vector3 moveVelocity;
+    float maxRange = 2f;
+
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -33,7 +47,68 @@ public class Gangadhar : MonoBehaviour
 
     private void Update()
     {
+
+       /* if (isJumping == true)
+        {
+          //  CharacterJump();
+        }
+       */
         CharacterLocomotion();
+    }
+
+    void CharacterJump()
+    {
+
+
+        if (Physics.Raycast(groundCheck.position, -groundCheck.up, maxRange))
+        {
+            isGrounded = true;
+            
+            PlayerAnim.SetBool("isLanding", false);
+            PlayerAnim.SetBool("isJumping",false);
+            // landEfx-------------
+            if (hasPlayed == true)
+            {
+                AudioManager.instance.audioSource.PlayOneShot(AudioManager.instance.LandSfx);
+                GameObject LandSmokeEfx = Instantiate(LandParticle, groundCheck.position, Quaternion.identity) as GameObject;
+                Destroy(LandSmokeEfx, 2f);
+                hasPlayed = false;
+            }
+
+        }
+        else
+        {
+           
+            hasPlayed = true;
+            isGrounded = false;
+           
+
+        }
+
+        if (isGrounded == true && Input.GetButtonDown("Jump"))
+        {
+
+            PlayerAnim.SetBool("isJumping", true);
+            moveVelocity.y = JumpSpeed * Time.deltaTime;
+
+        }
+
+        //gravity-----------------------
+        moveVelocity.y += gravity * Time.deltaTime;
+        characterController.Move(moveVelocity);
+
+        if (moveVelocity.y > 0.3f)
+        {
+            PlayerAnim.SetBool("isFalling", true);
+        }
+        else if (moveVelocity.y < 0.1f)
+        {
+            PlayerAnim.SetBool("isFalling", false);
+            PlayerAnim.SetBool("isLanding", true);
+
+        }
+
+
     }
 
     void CharacterLocomotion()
