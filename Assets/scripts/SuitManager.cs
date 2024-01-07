@@ -19,11 +19,14 @@ public class SuitManager : MonoBehaviour
         {
             GameObject Collectfx = Instantiate(boomEfx, caseCover.transform.position, Quaternion.identity) as GameObject;
             Destroy(Collectfx, 2f);
+            AudioManager.instance.audioSource.PlayOneShot(AudioManager.instance.explosionSfx);
             caseCover.useGravity = true;
             caseCover.isKinematic = false;
             caseCover.AddForce(Vector3.up*2000,ForceMode.Force);
             chakrasObj.SetActive(true);
             Debug.Log("Boom");
+            Collider collider=this.GetComponent<Collider>();
+            collider.enabled = false;
         }
     }
 } 

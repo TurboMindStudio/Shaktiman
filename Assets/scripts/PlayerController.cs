@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Player Controller")]
     //walk
-    private CharacterController characterController;
+    public CharacterController characterController;
     [Range(0f, 100f)]
     [SerializeField] float MoveSpeed;
     [SerializeField] Camera cam;
@@ -56,11 +56,20 @@ public class PlayerController : MonoBehaviour
     public bool isSpin;
     public bool haveSpinPower;
     Vector3 flyDirection;
-  
 
+
+    [Header("Sheild Logic")]
+    [SerializeField] GameObject sheildObj;
+    bool isActive;
+    public float sheildRenewTime;
+    public float sheildTime;
+    public TextMeshProUGUI sheildRenewTimeText;
+    [SerializeField] Image sheildIcon;
 
     //projectile reference
     private ProjectileShoot projectileShoot;
+
+    public bool canControl;
 
     private void Start()
     {
@@ -70,15 +79,22 @@ public class PlayerController : MonoBehaviour
         AudioManager.instance.FlyAudioSource.mute = true;
         haveSpinPower = true;
         dashRateText.text = "";
+        sheildObj.SetActive(false);
+        canControl = true;
 
     }
 
     private void Update()
     {
-        CharacterLocomotion();
-        Flash();
-        Dash();
-        Spin();
+        if(canControl)
+        {
+            CharacterLocomotion();
+            Flash();
+            Dash();
+            Spin();
+            Sheild();
+        }
+        
     }
 
     void CharacterLocomotion()
@@ -144,6 +160,7 @@ public class PlayerController : MonoBehaviour
 
 
         isDashing = true;
+
         if(isDashing && isFlashing==false)
         {
             
@@ -265,6 +282,42 @@ public class PlayerController : MonoBehaviour
         VCamControl.m_Orbits[2].m_Radius = radius;
     }
 
+    void Sheild()
+    {
 
+        
+
+        if (Input.GetKey(KeyCode.C))
+        {
+            isActive = true;
+        }
+
+        if (isActive)
+        {
+            sheildIcon.color = Color.gray;
+            sheildTime -= Time.deltaTime;
+            sheildRenewTime -= Time.deltaTime;
+            int sheildTimeInt=Mathf.FloorToInt(sheildRenewTime);
+            sheildRenewTimeText.text = sheildTimeInt.ToString();
+            sheildObj.SetActive(true);
+
+            if (sheildRenewTime<=1)
+            {
+                sheildObj.SetActive(false);
+                sheildRenewTimeText.text = "";
+                sheildTime = 20;
+                sheildRenewTime = 60;
+                isActive = false;
+                sheildIcon.color = Color.white;
+            }
+            if (sheildTime <= 0)
+            {
+                sheildObj.SetActive(false);
+            }
+        }
+
+        
+
+    }
 
 }

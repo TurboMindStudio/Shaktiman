@@ -10,7 +10,11 @@ public class UiManager : MonoBehaviour
     public bool haveBook;
     public bool isBookOpen;
     public GameObject BookPanel;
+    public GameObject titlePanel;
+    public GameObject UiPanel;
+    public GameObject bookPng;
     public ProjectileShoot projectileShoot;
+    public Gangadhar gangadhar;
     private void Awake()
     {
         instance = this;
@@ -19,7 +23,9 @@ public class UiManager : MonoBehaviour
     private void Start()
     {
         haveBook = false;
-        
+        titlePanel.SetActive(true);
+        bookPng.SetActive(false);
+        UiPanel.SetActive(false);
     }
 
     private void Update()
@@ -27,7 +33,7 @@ public class UiManager : MonoBehaviour
         if (haveBook)
         {
             GameManager.Instance.chakrasObj.SetActive(true);
-
+            bookPng.SetActive(true);
             if(Input.GetKeyDown(KeyCode.B) && !isBookOpen)
             {
                 isBookOpen = !isBookOpen;
@@ -44,5 +50,13 @@ public class UiManager : MonoBehaviour
 
             }
         }
+    }
+
+    public void StartGame()
+    {
+       gangadhar.canControl = true;
+        titlePanel.SetActive(false);
+        UiPanel.SetActive(true);
+        AudioManager.instance.audioSource.PlayOneShot(AudioManager.instance.clickSfx);
     }
 }

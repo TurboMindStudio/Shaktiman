@@ -7,8 +7,13 @@ public class PlayerHealth : MonoBehaviour
 {
     public int health = 100;
     public TextMeshProUGUI healthText;
+    public Animator PlayerAnim;
 
-
+    public ProjectileShoot projectileShoot;
+    public void Update()
+    {
+       
+    }
     public void deductHealth(int deductHealth)
     {
         health -= deductHealth;
@@ -18,6 +23,12 @@ public class PlayerHealth : MonoBehaviour
         {
             health=0;
             healthText.text = health.ToString();
+            PlayerAnim.SetTrigger("death");
+            GameManager.Instance.isEnemyAttacking = false;
+            projectileShoot.isShoot = false;
+            PlayerController playerController=GameObject.FindGameObjectWithTag("Player").GetComponentInParent<PlayerController>(); 
+            playerController.canControl = false;
+            playerController.characterController.height = 2;
             Debug.Log("the End");
         }
         else if (health <= 60)

@@ -8,6 +8,8 @@ TagManager:
   - Ground
   - fireball
   - hitpoint
+  - shield
+  - Enemy
   layers:
   - Default
   - TransparentFX

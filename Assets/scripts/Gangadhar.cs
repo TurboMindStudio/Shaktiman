@@ -39,10 +39,12 @@ public class Gangadhar : MonoBehaviour
     Vector3 moveVelocity;
     float maxRange = 2f;
 
+    public bool canControl;
+
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
-
+        canControl = false;
     }
 
     private void Update()
@@ -53,7 +55,12 @@ public class Gangadhar : MonoBehaviour
           //  CharacterJump();
         }
        */
-        CharacterLocomotion();
+
+        if(canControl)
+        {
+            CharacterLocomotion();
+        }
+        
     }
 
     void CharacterJump()

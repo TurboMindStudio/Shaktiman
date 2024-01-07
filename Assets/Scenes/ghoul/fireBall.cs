@@ -35,7 +35,13 @@ public class fireBall : MonoBehaviour
             Destroy(this.gameObject);
 
             PlayerHealth health=GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
-            health.deductHealth(Random.Range(10, 15));
+            health.deductHealth(Random.Range(1, 5));
+        }
+        if (other.CompareTag("shield"))
+        {
+            GameObject hitimpact = Instantiate(hitEfx, hitPos.position, Quaternion.identity) as GameObject;
+            Destroy(hitimpact, 0.5f);
+            Destroy(this.gameObject);
         }
     }
 }

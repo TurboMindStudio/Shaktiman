@@ -23,6 +23,7 @@ public class EnemyNavAi : MonoBehaviour
     [SerializeField] GameObject fireBallPrefab;
     [SerializeField] Transform fireShootPoint;
     [SerializeField] float shootForce;
+    
 
     private float firerateTime;
     [SerializeField] float rateOfFire;
@@ -31,7 +32,8 @@ public class EnemyNavAi : MonoBehaviour
     {
 
         detectRandomPosition();
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        GameManager.Instance.isEnemyAttacking = true;
+        //player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
     // Update is called once per frame
@@ -55,9 +57,10 @@ public class EnemyNavAi : MonoBehaviour
 
     void Chase()
     {
+        Transform player=GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>()as Transform;
         float distanceBetween_Player_Enmey = Vector3.Distance(this.transform.position, player.position);
-       // Debug.Log(distanceBetween_Player_Enmey);
-
+        // Debug.Log(distanceBetween_Player_Enmey);
+        
         Vector3 direction = (player.position - transform.position).normalized;
       //  Debug.DrawLine(player.position, transform.position, Color.red);
 
@@ -70,7 +73,11 @@ public class EnemyNavAi : MonoBehaviour
 
             fireBall newFireball=fireBallPrefab.GetComponent<fireBall>();
             newFireball.moveTowardPlayer();
-            attack();
+            if (GameManager.Instance.isEnemyAttacking)
+            {
+                attack();
+            }
+           
         }
         else if(distanceBetween_Player_Enmey >= 70)
         {

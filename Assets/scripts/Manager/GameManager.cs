@@ -10,6 +10,12 @@ public class GameManager : MonoBehaviour
     public int collectedChakras;
 
     public GameObject chakrasObj;
+
+    public GameObject[] CharacterAvaters;
+    public GameObject bots;
+    public GameObject powerPanel;
+
+    public bool isEnemyAttacking;
     private void Awake()
     {
         Instance = this;
@@ -18,6 +24,10 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         chakrasObj.SetActive(false);
+        CharacterAvaters[1].SetActive(false);
+        CharacterAvaters[0].SetActive(true);
+        bots.SetActive(false);
+        powerPanel.SetActive(false);
     }
 
 }

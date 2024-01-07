@@ -18,6 +18,7 @@ public class Book : MonoBehaviour
             Destroy(gameObject);
             UiManager.instance.haveBook = true;
             AudioManager.instance.audioSource.PlayOneShot(AudioManager.instance.equipSfx);
+           
         }
     }
 }
