@@ -5,7 +5,7 @@ using UnityEngine;
 public class Collectables : MonoBehaviour
 {
     [SerializeField] GameObject collectEfx;
-
+   
     private void Update()
     {
         transform.Rotate(Vector3.forward*20f*Time.deltaTime);
@@ -22,6 +22,7 @@ public class Collectables : MonoBehaviour
             if (GameManager.Instance.collectedChakras == 7)
             {
                 GameManager.Instance.AllChakrasCollected = true;
+                GameManager.Instance.caveDoorAnimator.SetTrigger("openDoor");
             }
             Destroy(this.gameObject);
         }

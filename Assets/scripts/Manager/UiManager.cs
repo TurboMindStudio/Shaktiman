@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Net.Http.Headers;
 using Unity.VisualScripting;
 using UnityEngine;
+using Cinemachine;
+using UnityEngine.UI;
+using TMPro;
 
 public class UiManager : MonoBehaviour
 {
@@ -15,6 +18,22 @@ public class UiManager : MonoBehaviour
     public GameObject bookPng;
     public ProjectileShoot projectileShoot;
     public Gangadhar gangadhar;
+
+    //camera setting;
+    [Header("Camera Settings")]
+    [SerializeField] CinemachineFreeLook cinemachineFreeLook;
+    [Range(0f,1000f)]
+    [SerializeField] int Xsensitivity;
+    [Range(0f, 100f)]
+    [SerializeField] int Ysensitivity;
+    public bool XInvert;
+    public bool YInvert;
+    public Slider XSenstivitySlider;
+    public Slider YSenstivitySlider;
+    public TextMeshProUGUI XsensitivityText;
+    public TextMeshProUGUI YsensitivityText;
+    public Toggle XInvertToggle;
+    public Toggle YInvertToggle;
     private void Awake()
     {
         instance = this;
@@ -26,22 +45,46 @@ public class UiManager : MonoBehaviour
         titlePanel.SetActive(true);
         bookPng.SetActive(false);
         UiPanel.SetActive(false);
+        
+       
     }
 
     private void Update()
+    {
+        BookManager();
+        cameraSetting();
+
+       
+    }
+
+    private void OnValidate()
+    {
+        cameraSetting();
+    }
+
+    public void StartGame()
+    {
+        gangadhar.canControl = true;
+        titlePanel.SetActive(false);
+        UiPanel.SetActive(true);
+        AudioManager.instance.audioSource.PlayOneShot(AudioManager.instance.clickSfx);
+
+    }
+
+    public void BookManager()
     {
         if (haveBook)
         {
             GameManager.Instance.chakrasObj.SetActive(true);
             bookPng.SetActive(true);
-            if(Input.GetKeyDown(KeyCode.B) && !isBookOpen)
+            if (Input.GetKeyDown(KeyCode.B) && !isBookOpen)
             {
                 isBookOpen = !isBookOpen;
                 BookPanel.SetActive(true);
                 projectileShoot.isShoot = false;
                 AudioManager.instance.audioSource.PlayOneShot(AudioManager.instance.bookSfx);
             }
-            else if(Input.GetKeyDown(KeyCode.B) && isBookOpen)
+            else if (Input.GetKeyDown(KeyCode.B) && isBookOpen)
             {
                 isBookOpen = !isBookOpen;
                 BookPanel.SetActive(false);
@@ -52,11 +95,21 @@ public class UiManager : MonoBehaviour
         }
     }
 
-    public void StartGame()
+    public void cameraSetting()
     {
-       gangadhar.canControl = true;
-        titlePanel.SetActive(false);
-        UiPanel.SetActive(true);
-        AudioManager.instance.audioSource.PlayOneShot(AudioManager.instance.clickSfx);
+        cinemachineFreeLook.m_XAxis.m_MaxSpeed = Xsensitivity;
+        cinemachineFreeLook.m_YAxis.m_MaxSpeed = Ysensitivity;
+
+        cinemachineFreeLook.m_XAxis.m_InvertInput = XInvert;
+        cinemachineFreeLook.m_YAxis.m_InvertInput = YInvert;
+
+        XSenstivitySlider.value = Xsensitivity;
+        YSenstivitySlider.value = Ysensitivity;
+        XsensitivityText.text=Xsensitivity.ToString();
+        YsensitivityText.text=Ysensitivity.ToString();
+
+        XInvertToggle.isOn = XInvert;
+        YInvertToggle.isOn = YInvert;
+
     }
 }

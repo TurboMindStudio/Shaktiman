@@ -9,12 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3981386438562307869}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CC_Base_Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &3981386438562307869
 Transform:
@@ -41,12 +41,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1940539815046648016}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Spoke_Wheel_0_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1940539815046648016
 Transform:
@@ -73,12 +73,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2058488670645473166}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CC_Base_Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2058488670645473166
 Transform:
@@ -105,12 +105,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4302981172110714403}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Hexagonal_Prism
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &4302981172110714403
 Transform:
@@ -137,12 +137,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4216811870491583976}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CC_Base_Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &4216811870491583976
 Transform:
@@ -169,12 +169,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 642323817892866492}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Spoke_Wheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &642323817892866492
 Transform:
@@ -203,12 +203,12 @@ GameObject:
   - component: {fileID: 7179889961790649636}
   - component: {fileID: 4603945975863642519}
   - component: {fileID: 3146063850951132579}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cylinder001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &7179889961790649636
 Transform:
@@ -284,12 +284,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8778737987106998384}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CC_Base_Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &8778737987106998384
 Transform:
@@ -316,12 +316,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 470940307702861154}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: bhelpuri
-  m_TagString: Untagged
+  m_TagString: Obstacles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &470940307702861154
 Transform:
@@ -331,9 +331,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5366708651355262139}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 618.39996, y: 1.1700001, z: 633.64}
-  m_LocalScale: {x: 5.1802, y: 5.1802, z: 5.1802}
+  m_LocalScale: {x: 3.1260955, y: 3.1260955, z: 3.1260955}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7485760067583767389}
@@ -350,12 +350,12 @@ GameObject:
   - component: {fileID: 2850119588605654455}
   - component: {fileID: 2052619373264851196}
   - component: {fileID: 1156154064918524164}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Spare_Wheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2850119588605654455
 Transform:
@@ -431,12 +431,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8858668062529470241}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Hexagonal_Prism_0_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &8858668062529470241
 Transform:
@@ -465,12 +465,12 @@ GameObject:
   - component: {fileID: 5314811188677135866}
   - component: {fileID: 4706490454164716865}
   - component: {fileID: 1359535530414552416}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cylinder001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5314811188677135866
 Transform:
@@ -548,12 +548,12 @@ GameObject:
   - component: {fileID: 5742929796291668580}
   - component: {fileID: 5458936660284697091}
   - component: {fileID: 2245904179583795192}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Spare_Wheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5742929796291668580
 Transform:
@@ -629,12 +629,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 345664703529213725}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Spoke_Wheel_2_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &345664703529213725
 Transform:
@@ -661,12 +661,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4388494650283657643}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Spoke_Wheel_1_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &4388494650283657643
 Transform:
@@ -693,12 +693,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4926437632839824698}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CC_Base_Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &4926437632839824698
 Transform:
@@ -725,12 +725,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7485760067583767389}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BHELPURI_2K5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &7485760067583767389
 Transform:
@@ -766,12 +766,12 @@ GameObject:
   - component: {fileID: 746440940087387943}
   - component: {fileID: 8011703275242035506}
   - component: {fileID: 219740382634225007}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MAIN_Front_Side_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &746440940087387943
 Transform:
@@ -854,12 +854,12 @@ GameObject:
   - component: {fileID: 8956512236965179546}
   - component: {fileID: 149895683802925097}
   - component: {fileID: 2989182400568490843}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MAIN_Back_Side_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &8956512236965179546
 Transform:
@@ -938,12 +938,12 @@ GameObject:
   - component: {fileID: 5298595141898631817}
   - component: {fileID: 546215320549080603}
   - component: {fileID: 2456518865735374365}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Spare_Wheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5298595141898631817
 Transform:
@@ -1021,12 +1021,12 @@ GameObject:
   - component: {fileID: 5211435655992791660}
   - component: {fileID: 76825907841179983}
   - component: {fileID: 5732031544184389118}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Spare_Wheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5211435655992791660
 Transform:
@@ -1102,12 +1102,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2853598102105345385}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CC_Base_Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2853598102105345385
 Transform:

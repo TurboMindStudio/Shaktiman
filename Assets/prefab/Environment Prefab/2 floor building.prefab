@@ -10812,7 +10812,7 @@ GameObject:
   - component: {fileID: 2015158503421050084}
   m_Layer: 6
   m_Name: 2 floor building
-  m_TagString: Untagged
+  m_TagString: Obstacles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647

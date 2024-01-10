@@ -4478,7 +4478,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7d121d8749a12b448afc1d734c7e4c57, type: 2}
+  - {fileID: 2100000, guid: b02899124866ad64d8d965c132c8ac5a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8025,7 +8025,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7d121d8749a12b448afc1d734c7e4c57, type: 2}
+  - {fileID: 2100000, guid: b02899124866ad64d8d965c132c8ac5a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -18340,7 +18340,7 @@ GameObject:
   - component: {fileID: 5416414166892794629}
   m_Layer: 6
   m_Name: 4 floor building
-  m_TagString: Untagged
+  m_TagString: Obstacles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647

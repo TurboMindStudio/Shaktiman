@@ -6838,7 +6838,7 @@ GameObject:
   - component: {fileID: 270084638653133246}
   m_Layer: 6
   m_Name: 3 floor building
-  m_TagString: Untagged
+  m_TagString: Obstacles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647

@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     public GameObject powerPanel;
 
     public bool isEnemyAttacking;
+
+    public Animator caveDoorAnimator;
     private void Awake()
     {
         Instance = this;

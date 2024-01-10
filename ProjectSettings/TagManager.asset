@@ -10,6 +10,7 @@ TagManager:
   - hitpoint
   - shield
   - Enemy
+  - Obstacles
   layers:
   - Default
   - TransparentFX

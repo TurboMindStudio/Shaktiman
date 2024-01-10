@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e7d83544059d96146880a2517366bd2a, type: 2}
+  - {fileID: 2100000, guid: 678002118564ab746882c8efcfef52fa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -330,7 +330,7 @@ GameObject:
   - component: {fileID: 5677069891030440007}
   m_Layer: 6
   m_Name: rustyshop
-  m_TagString: Untagged
+  m_TagString: Obstacles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647

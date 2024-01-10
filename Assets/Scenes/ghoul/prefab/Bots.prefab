@@ -145,6 +145,8 @@ GameObject:
   - component: {fileID: 7077483327686113696}
   - component: {fileID: 6699464663699703771}
   - component: {fileID: 7615234692847828215}
+  - component: {fileID: 6935743080266875838}
+  - component: {fileID: 1447085239693982067}
   m_Layer: 0
   m_Name: Bots
   m_TagString: Enemy
@@ -279,8 +281,41 @@ MonoBehaviour:
     type: 3}
   fireShootPoint: {fileID: 4629596218541137647}
   shootForce: 1000
-  isAttacking: 0
   rateOfFire: 1
+--- !u!135 &6935743080266875838
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 218281550229018657}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.91342664
+  m_Center: {x: 0, y: 1.4799194, z: 0}
+--- !u!114 &1447085239693982067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 218281550229018657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7b6ef9c6f5d2d447a2b462f14d6924a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
 --- !u!1 &276671268878710429
 GameObject:
   m_ObjectHideFlags: 0

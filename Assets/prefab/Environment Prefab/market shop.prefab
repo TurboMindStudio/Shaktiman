@@ -564,7 +564,7 @@ GameObject:
   - component: {fileID: 8443359139413929250}
   m_Layer: 6
   m_Name: market shop
-  m_TagString: Untagged
+  m_TagString: Obstacles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
