@@ -25,10 +25,12 @@ public class PlayerHealth : MonoBehaviour
             healthText.text = health.ToString();
             PlayerAnim.SetTrigger("death");
             GameManager.Instance.isEnemyAttacking = false;
+            kilvish kilvishAnim=GameObject.FindGameObjectWithTag("kilvish").GetComponent<kilvish>();
+            kilvishAnim.animator.SetTrigger("dance");
             projectileShoot.isShoot = false;
             PlayerController playerController=GameObject.FindGameObjectWithTag("Player").GetComponentInParent<PlayerController>(); 
             playerController.canControl = false;
-            playerController.characterController.height = 2;
+           //playerController.characterController.height = 2;
             Debug.Log("the End");
         }
         else if (health <= 60)

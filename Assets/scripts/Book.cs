@@ -18,7 +18,8 @@ public class Book : MonoBehaviour
             Destroy(gameObject);
             UiManager.instance.haveBook = true;
             AudioManager.instance.audioSource.PlayOneShot(AudioManager.instance.equipSfx);
-           
+            UiManager.instance.updateInfoText("Collect 7 chakras to open cave");
+            UiManager.instance.StartCoroutine(UiManager.instance.disapparText());
         }
     }
 }

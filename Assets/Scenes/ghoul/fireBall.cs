@@ -8,6 +8,7 @@ public class fireBall : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] GameObject hitEfx;
     Transform hitPos;
+    [SerializeField] int minDeducthealth, maxDeducthealth;
     private void Start()
     {
        hitPos = GameObject.FindGameObjectWithTag("hitpoint").GetComponent<Transform>();
@@ -35,7 +36,7 @@ public class fireBall : MonoBehaviour
             Destroy(this.gameObject);
 
             PlayerHealth health=GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
-            health.deductHealth(Random.Range(1, 5));
+            health.deductHealth(Random.Range(minDeducthealth, maxDeducthealth));
         }
         if (other.CompareTag("shield"))
         {

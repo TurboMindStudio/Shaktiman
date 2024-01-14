@@ -19,6 +19,16 @@ public class fireball : MonoBehaviour
             
         }
 
+        if (other.CompareTag("kilvish"))
+        {
+            GameObject hitimpact = Instantiate(hitEfx, this.transform.position, Quaternion.identity) as GameObject;
+            Destroy(hitimpact, 0.5f);
+            Destroy(this.gameObject);
+
+            kilvishHealth enemyHealth = GameObject.FindGameObjectWithTag("kilvish").GetComponent<kilvishHealth>();
+            enemyHealth.deducthealth(deductHealth);
+        }
+
         if (other.CompareTag("Obstacles"))
         {
             GameObject hitimpact = Instantiate(hitEfx, this.transform.position, Quaternion.identity) as GameObject;

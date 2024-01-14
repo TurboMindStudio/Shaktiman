@@ -19,6 +19,7 @@ public class Suit : MonoBehaviour
             GameManager.Instance.CharacterAvaters[1].SetActive(true);
             GameManager.Instance.CharacterAvaters[0].SetActive(false);
             GameManager.Instance.bots.SetActive(true);
+            GameManager.Instance.kilvish.SetActive(true);
             GameManager.Instance.powerPanel.SetActive(true);
             AudioManager.instance.ShaktimanBgm.enabled=true;
             AudioManager.instance.audioSource.PlayOneShot(AudioManager.instance.CollectSfx);

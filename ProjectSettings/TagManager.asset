@@ -11,6 +11,7 @@ TagManager:
   - shield
   - Enemy
   - Obstacles
+  - kilvish
   layers:
   - Default
   - TransparentFX

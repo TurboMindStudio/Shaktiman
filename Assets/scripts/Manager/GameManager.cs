@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject[] CharacterAvaters;
     public GameObject bots;
+    public GameObject kilvish;
     public GameObject powerPanel;
 
     public bool isEnemyAttacking;
@@ -29,7 +30,9 @@ public class GameManager : MonoBehaviour
         CharacterAvaters[1].SetActive(false);
         CharacterAvaters[0].SetActive(true);
         bots.SetActive(false);
+        kilvish.SetActive(false);
         powerPanel.SetActive(false);
+       
     }
 
 }
