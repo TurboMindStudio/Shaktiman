@@ -295,6 +295,7 @@ public class PlayerController : MonoBehaviour
 
         if (isActive)
         {
+            
             sheildIcon.color = Color.gray;
             sheildTime -= Time.deltaTime;
             sheildRenewTime -= Time.deltaTime;

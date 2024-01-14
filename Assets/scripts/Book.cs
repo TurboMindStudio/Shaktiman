@@ -14,7 +14,7 @@ public class Book : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-           
+            UiManager.instance.chakrasScorePng.SetActive(true);
             Destroy(gameObject);
             UiManager.instance.haveBook = true;
             AudioManager.instance.audioSource.PlayOneShot(AudioManager.instance.equipSfx);

@@ -26,6 +26,9 @@ public class Suit : MonoBehaviour
             GameObject Collectfx = Instantiate(collectEfx, this.transform.position, Quaternion.identity) as GameObject;
             Destroy(Collectfx, 2f);
             Destroy(this.gameObject);
+
+            UiManager.instance.updateInfoText("Andhera Kayam Rahe !!");
+            UiManager.instance.StartCoroutine(UiManager.instance.disapparText());
         }
     }
 }

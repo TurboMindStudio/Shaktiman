@@ -15,9 +15,10 @@ public class Collectables : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            UiManager.instance.chakrasScorePng.SetActive(true);
-            UiManager.instance.chakrasScoreText.text=GameManager.Instance.collectedChakras.ToString();
+           
+            
             GameManager.Instance.collectedChakras++;
+            UiManager.instance.chakrasScoreText.text = GameManager.Instance.collectedChakras.ToString();
             AudioManager.instance.audioSource.PlayOneShot(AudioManager.instance.CollectSfx);
             GameObject Collectfx = Instantiate(collectEfx,this.transform.position,Quaternion.identity) as GameObject;
             Destroy(Collectfx, 2f);
@@ -26,6 +27,9 @@ public class Collectables : MonoBehaviour
                 UiManager.instance.chakrasScorePng.SetActive(false);
                 GameManager.Instance.AllChakrasCollected = true;
                 GameManager.Instance.caveDoorAnimator.SetTrigger("openDoor");
+
+                UiManager.instance.updateInfoText("Cave is Opened");
+                UiManager.instance.StartCoroutine(UiManager.instance.disapparText());
             }
             Destroy(this.gameObject);
         }

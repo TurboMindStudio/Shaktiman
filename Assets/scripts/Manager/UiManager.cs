@@ -54,7 +54,7 @@ public class UiManager : MonoBehaviour
         //titlePanel.SetActive(true);
         bookPng.SetActive(false);
         UiPanel.SetActive(false);
-        infoText.gameObject.SetActive(false);
+        
         updateInfoText(string.Empty);
         chakrasScorePng.SetActive(false);
     }
@@ -81,7 +81,7 @@ public class UiManager : MonoBehaviour
         AudioManager.instance.audioSource.PlayOneShot(AudioManager.instance.clickSfx);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-       
+        infoText.gameObject.SetActive(false);
     }
 
     public void BookManager()
@@ -96,6 +96,8 @@ public class UiManager : MonoBehaviour
                 BookPanel.SetActive(true);
                 projectileShoot.isShoot = false;
                 AudioManager.instance.audioSource.PlayOneShot(AudioManager.instance.bookSfx);
+                Cursor.lockState = CursorLockMode.Confined;
+                Cursor.visible = true;
             }
             else if (Input.GetKeyDown(KeyCode.B) && isBookOpen)
             {
@@ -103,6 +105,8 @@ public class UiManager : MonoBehaviour
                 BookPanel.SetActive(false);
                 projectileShoot.isShoot = true;
                 AudioManager.instance.audioSource.PlayOneShot(AudioManager.instance.bookSfx);
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
 
             }
         }
@@ -143,13 +147,15 @@ public class UiManager : MonoBehaviour
 
     public void updateInfoText(string text)
     {
+        
         infoText.gameObject.SetActive(true);
         infoText.text = text;
+        AudioManager.instance.audioSource.PlayOneShot(AudioManager.instance.infoAuraSfx);
     }
 
     public IEnumerator disapparText()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(6f);
         infoText.gameObject.SetActive(false);
     }
 }

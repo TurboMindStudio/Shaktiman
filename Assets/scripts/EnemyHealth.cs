@@ -13,6 +13,8 @@ public class EnemyHealth : MonoBehaviour
         Debug.Log(health);
         if(health <= 0)
         {
+            GameObject enemydeathAura = Instantiate(GameManager.Instance.enemyDeathAura, this.transform.position, Quaternion.identity) as GameObject;
+            Destroy(enemydeathAura,2f);
             Destroy(this.gameObject);
         }
     }

@@ -18,6 +18,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip bookSfx;
     public AudioClip explosionSfx;
     public AudioClip clickSfx;
+    public AudioClip infoAuraSfx;
+    public AudioClip shieldAuraSfx;
     public bool playOnce;
      
     private void Awake()

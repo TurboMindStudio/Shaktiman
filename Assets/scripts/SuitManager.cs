@@ -27,6 +27,9 @@ public class SuitManager : MonoBehaviour
             Debug.Log("Boom");
             Collider collider=this.GetComponent<Collider>();
             collider.enabled = false;
+
+            UiManager.instance.updateInfoText("Take your suit and get ready to grind");
+            UiManager.instance.StartCoroutine(UiManager.instance.disapparText());
         }
     }
 } 
