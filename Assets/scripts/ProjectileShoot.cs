@@ -47,7 +47,7 @@ public class ProjectileShoot : MonoBehaviour
 
     }
 
-    void shoot()
+    public void shoot()
     {
         AudioManager.instance.audioSource.PlayOneShot(AudioManager.instance.ShootSfx);
         GameObject bullet = Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation) as GameObject;

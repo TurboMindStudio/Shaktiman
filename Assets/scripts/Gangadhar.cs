@@ -41,6 +41,8 @@ public class Gangadhar : MonoBehaviour
 
     public bool canControl;
 
+    public virtualJoystick joystick;
+
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -88,7 +90,6 @@ public class Gangadhar : MonoBehaviour
            
             hasPlayed = true;
             isGrounded = false;
-           
 
         }
 
@@ -115,13 +116,12 @@ public class Gangadhar : MonoBehaviour
 
         }
 
-
     }
 
     void CharacterLocomotion()
     {
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
+        float horizontal = joystick.inputHorizontal();
+        float vertical = joystick.InputVertical();
 
         Vector3 direction = Quaternion.Euler(0, cam.transform.eulerAngles.y, 0) * new Vector3(horizontal, 0, vertical);
         float InputMag = Mathf.Clamp01(direction.magnitude);

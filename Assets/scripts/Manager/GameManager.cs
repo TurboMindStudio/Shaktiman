@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public GameObject enemyDeathAura;
 
     public Animator caveDoorAnimator;
+  
     private void Awake()
     {
         Instance = this;
@@ -28,8 +29,8 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         chakrasObj.SetActive(false);
-       // CharacterAvaters[1].SetActive(false);
-       // CharacterAvaters[0].SetActive(true);
+        // CharacterAvaters[1].SetActive(false);
+        // CharacterAvaters[0].SetActive(true);
         bots.SetActive(false);
         kilvish.SetActive(false);
         powerPanel.SetActive(false);

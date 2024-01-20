@@ -29,6 +29,10 @@ public class Suit : MonoBehaviour
 
             UiManager.instance.updateInfoText("Andhera Kayam Rahe !!");
             UiManager.instance.StartCoroutine(UiManager.instance.disapparText());
+
+            //UiManager.instance.PowerUiButtons.SetActive(true);
+            
+            
         }
     }
 }

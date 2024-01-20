@@ -30,6 +30,7 @@ public class Collectables : MonoBehaviour
 
                 UiManager.instance.updateInfoText("Cave is Opened");
                 UiManager.instance.StartCoroutine(UiManager.instance.disapparText());
+                
             }
             Destroy(this.gameObject);
         }

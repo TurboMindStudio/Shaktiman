@@ -70,7 +70,9 @@ public class PlayerController : MonoBehaviour
     private ProjectileShoot projectileShoot;
 
     public bool canControl;
+    public virtualJoystick joystick;
 
+    public bool isButtonPressed;
     private void Start()
     {
         projectileShoot = GetComponent<ProjectileShoot>();
@@ -94,14 +96,17 @@ public class PlayerController : MonoBehaviour
             Spin();
             Sheild();
         }
+
         
     }
 
     void CharacterLocomotion()
     {
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
+        // float horizontal = Input.GetAxis("Horizontal");
+        //float vertical = Input.GetAxis("Vertical");
 
+        float horizontal = joystick.inputHorizontal();
+        float vertical = joystick.InputVertical();
         Vector3 direction = Quaternion.Euler(0, cam.transform.eulerAngles.y, 0) * new Vector3(horizontal, 0, vertical);
         float InputMag = Mathf.Clamp01(direction.magnitude);
         moveInput = direction.normalized;
@@ -137,8 +142,8 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    void Dash()
-    {
+    public void Dash()
+     {
         // dash Time Rate
         if (dashRate >= 1)
         {
@@ -164,17 +169,9 @@ public class PlayerController : MonoBehaviour
         if(isDashing && isFlashing==false)
         {
             
-            if (dashRate <= 1 && Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.Q))
             {
-                
-                projectileShoot.isShoot = false;
-                AudioManager.instance.audioSource.PlayOneShot(AudioManager.instance.DashSfx);
-                characterController.Move(moveInput * dashSpeed * Time.deltaTime);
-                GameObject dashEffect = Instantiate(dashEfx, transform.position, Quaternion.identity) as GameObject;
-                Destroy(dashEffect, 2);
-                dashRate = 9;
-               
-                
+                AndroidDash();
             }
             
         }
@@ -182,14 +179,14 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    void Flash()
+   public void Flash()
     {
         //flash Activation
         
         if (Input.GetKeyDown(KeyCode.F))
         {
-            isFlashing = true;
-            haveSpinPower = false;
+            AndroidFlash();
+
             
         }
 
@@ -245,24 +242,27 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void Spin()
+   public void Spin()
     {
 
-        if(Input.GetKey(KeyCode.R) && haveSpinPower==true)
+        if(Input.GetKey(KeyCode.R))
         {
-            transform.Rotate(0, RotateSpeed * Time.deltaTime, 0);
 
-            if (this.transform.position.y <= FlyAltitude)
+            if (haveSpinPower == true)
             {
-                
-                characterGravity gravity=GameObject.FindGameObjectWithTag("Player").GetComponent<characterGravity>();
-                gravity.enabled = false;
-                flyDirection = Vector3.up * FlySpeed * Time.deltaTime;
-                characterController.Move(flyDirection);
-                FlyEfx.SetActive(true);
-                AudioManager.instance.FlyAudioSource.mute = false;
+                transform.Rotate(0, RotateSpeed * Time.deltaTime, 0);
+
+                if (this.transform.position.y <= FlyAltitude)
+                {
+
+                    characterGravity gravity = GameObject.FindGameObjectWithTag("Player").GetComponent<characterGravity>();
+                    gravity.enabled = false;
+                    flyDirection = Vector3.up * FlySpeed * Time.deltaTime;
+                    characterController.Move(flyDirection);
+                    FlyEfx.SetActive(true);
+                    AudioManager.instance.FlyAudioSource.mute = false;
+                }
             }
-           
 
         }
         else
@@ -283,27 +283,26 @@ public class PlayerController : MonoBehaviour
         VCamControl.m_Orbits[2].m_Radius = radius;
     }
 
-    void Sheild()
+   public void Sheild()
     {
 
         
 
         if (Input.GetKey(KeyCode.C))
         {
-            isActive = true;
+           AndroidShield();
         }
 
         if (isActive)
         {
-            
             sheildIcon.color = Color.gray;
             sheildTime -= Time.deltaTime;
             sheildRenewTime -= Time.deltaTime;
-            int sheildTimeInt=Mathf.FloorToInt(sheildRenewTime);
+            int sheildTimeInt = Mathf.FloorToInt(sheildRenewTime);
             sheildRenewTimeText.text = sheildTimeInt.ToString();
             sheildObj.SetActive(true);
 
-            if (sheildRenewTime<=1)
+            if (sheildRenewTime <= 1)
             {
                 sheildObj.SetActive(false);
                 sheildRenewTimeText.text = "";
@@ -316,10 +315,51 @@ public class PlayerController : MonoBehaviour
             {
                 sheildObj.SetActive(false);
             }
-        }
+        
+    }
 
         
 
     }
+
+
+    public void AndroidSpinButtonDown()
+    {
+        isButtonPressed = true;
+    }
+
+
+    public void AndroidSpinButtonUp()
+    {
+       isButtonPressed= false;
+    }
+
+    public void AndroidDash()
+    {
+
+        if (dashRate <= 1)
+        {
+            projectileShoot.isShoot = false;
+            AudioManager.instance.audioSource.PlayOneShot(AudioManager.instance.DashSfx);
+            characterController.Move(moveInput * dashSpeed * Time.deltaTime);
+            GameObject dashEffect = Instantiate(dashEfx, transform.position, Quaternion.identity) as GameObject;
+            Destroy(dashEffect, 2);
+            dashRate = 9;
+        }
+       
+    }
+    public void AndroidFlash()
+    {
+        isFlashing = true;
+        haveSpinPower = false;
+    }
+
+    public void AndroidShield()
+    {
+        isActive = true;
+    }
+
+
+
 
 }

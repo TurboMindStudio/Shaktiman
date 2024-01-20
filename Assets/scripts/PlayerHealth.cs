@@ -32,10 +32,17 @@ public class PlayerHealth : MonoBehaviour
             playerController.canControl = false;
            //playerController.characterController.height = 2;
             Debug.Log("the End");
+            StartCoroutine(takeDealy());
         }
         else if (health <= 60)
         {
             healthText.color = Color.red;
         }
+    }
+
+    IEnumerator takeDealy()
+    {
+        yield return new WaitForSeconds(5f);
+        UiManager.instance.restartPanel.SetActive(true);
     }
 }

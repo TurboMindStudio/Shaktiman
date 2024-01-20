@@ -1,20 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Net.Http.Headers;
-using Unity.VisualScripting;
 using UnityEngine;
 using Cinemachine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class UiManager : MonoBehaviour
 {
     public static UiManager instance;
     public bool haveBook;
-    public bool isBookOpen;
     public GameObject BookPanel;
     public GameObject titlePanel;
     public GameObject UiPanel;
+    public GameObject restartPanel;
     public GameObject bookPng;
     public ProjectileShoot projectileShoot;
     public Gangadhar gangadhar;
@@ -24,24 +23,12 @@ public class UiManager : MonoBehaviour
     public GameObject chakrasScorePng;
     public TextMeshProUGUI chakrasScoreText;
 
-    //camera setting;
-   /* [Header("Camera Settings")]
-    [SerializeField] CinemachineFreeLook[] cinemachineFreeLook;
-    [Range(0f,1000f)]
-    [SerializeField] int Xsensitivity;
-    [Range(0f, 100f)]
-    [SerializeField] int Ysensitivity;
-    public bool XInvert;
-    public bool YInvert;
-    public Slider XSenstivitySlider;
-    public Slider YSenstivitySlider;
-    public TextMeshProUGUI XsensitivityText;
-    public TextMeshProUGUI YsensitivityText;
-    public Toggle XInvertToggle;
-    public Toggle YInvertToggle; */
-
     public GameObject settingPanel;
     public freeLookCamRotation flControl;
+
+    //android 
+
+    //public GameObject PowerUiButtons;
   
     private void Awake()
     {
@@ -54,23 +41,22 @@ public class UiManager : MonoBehaviour
         //titlePanel.SetActive(true);
         bookPng.SetActive(false);
         UiPanel.SetActive(false);
-        
+       // PowerUiButtons.SetActive(false);
         updateInfoText(string.Empty);
         chakrasScorePng.SetActive(false);
+        restartPanel.SetActive(false);
     }
 
     private void Update()
     {
         BookManager();
-        
 
        if(Input.GetKey(KeyCode.Escape))
-        {
+       {
             settingPanel.SetActive(true);
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
-            
-        }
+       }
     }
 
     public void StartGame()
@@ -79,9 +65,14 @@ public class UiManager : MonoBehaviour
         titlePanel.SetActive(false);
         UiPanel.SetActive(true);
         AudioManager.instance.audioSource.PlayOneShot(AudioManager.instance.clickSfx);
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+       // Cursor.lockState = CursorLockMode.Locked;
+       // Cursor.visible = false;
         infoText.gameObject.SetActive(false);
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void BookManager()
@@ -90,47 +81,13 @@ public class UiManager : MonoBehaviour
         {
             GameManager.Instance.chakrasObj.SetActive(true);
             bookPng.SetActive(true);
-            if (Input.GetKeyDown(KeyCode.B) && !isBookOpen)
-            {
-                isBookOpen = !isBookOpen;
-                BookPanel.SetActive(true);
-                projectileShoot.isShoot = false;
-                AudioManager.instance.audioSource.PlayOneShot(AudioManager.instance.bookSfx);
-                Cursor.lockState = CursorLockMode.Confined;
-                Cursor.visible = true;
-            }
-            else if (Input.GetKeyDown(KeyCode.B) && isBookOpen)
-            {
-                isBookOpen = !isBookOpen;
-                BookPanel.SetActive(false);
-                projectileShoot.isShoot = true;
-                AudioManager.instance.audioSource.PlayOneShot(AudioManager.instance.bookSfx);
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
 
+            if (Input.GetKeyDown(KeyCode.B))
+            {
+                openBook();
             }
         }
     }
-
-   /* public void cameraSetting()
-    {
-        cinemachineFreeLook.m_XAxis.m_MaxSpeed = Xsensitivity;
-        cinemachineFreeLook.m_YAxis.m_MaxSpeed = Ysensitivity;
-
-        cinemachineFreeLook.m_XAxis.m_InvertInput = XInvert;
-        cinemachineFreeLook.m_YAxis.m_InvertInput = YInvert;
-
-        XSenstivitySlider.value = Xsensitivity;
-        YSenstivitySlider.value = Ysensitivity;
-        XsensitivityText.text=Xsensitivity.ToString();
-        YsensitivityText.text=Ysensitivity.ToString();
-
-        XInvertToggle.isOn = XInvert;
-        YInvertToggle.isOn = YInvert;
-
-    }
-   */
-   
 
     public void openSettingPanel()
     {
@@ -158,4 +115,25 @@ public class UiManager : MonoBehaviour
         yield return new WaitForSeconds(6f);
         infoText.gameObject.SetActive(false);
     }
+
+    public void openBook()
+    {
+            BookPanel.SetActive(true);
+            projectileShoot.isShoot = false;
+            AudioManager.instance.audioSource.PlayOneShot(AudioManager.instance.bookSfx);
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true; 
+    }
+
+    public void closeBook()
+    {
+            BookPanel.SetActive(false);
+            projectileShoot.isShoot = true;
+            AudioManager.instance.audioSource.PlayOneShot(AudioManager.instance.bookSfx);
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+   
+    }
+
+    
 }

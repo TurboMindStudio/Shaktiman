@@ -8,12 +8,13 @@ public class loadGame : MonoBehaviour
     public GameObject timeline;
     public GameObject timelinecam;
     public GameObject startPage;
+    public GameObject androidUiPanel;
     private void Start()
     {
         startPage.SetActive(true);
         cam.SetActive(true);
         timeline.SetActive(false);
         timelinecam.SetActive(false);
-
+       // androidUiPanel.SetActive(true);
     }
 }
